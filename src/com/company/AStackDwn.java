@@ -18,7 +18,10 @@ public class AStackDwn implements Stack        // Array based stack class
     }
     public AStackDwn(int size)         // Constructor: specific size
     {
-        setup(size);
+        if (size > 0)
+            setup(size);
+        else
+            System.out.println("Constructor failed, stack size is less than 0.");
     }
 
     //Class methods
@@ -31,16 +34,29 @@ public class AStackDwn implements Stack        // Array based stack class
     //----- Insert method implementations for the interface Stack here -----//
     public void push(Object newElement)
     {
-        top--;
-        this.element[top] = newElement;
+        if (!this.isFull() && newElement != null)
+        {
+            top--;
+            this.element[top] = newElement;
+        }
+        else
+            System.out.println("Can't push this element into the stack.");
     }
 
     public Object pop()
     {
-        Object topElement = this.element[top];
-        this.element[top] = null;
-        top++;
-        return topElement;
+        if (!this.isEmpty())
+        {
+            Object topElement = this.element[top];
+            this.element[top] = null;
+            top++;
+            return topElement;
+        }
+        else
+        {
+            System.out.println("Can't pop, stack is empty.");
+            return null;
+        }
     }
 
     public void clear()

@@ -18,7 +18,7 @@ public class TestLStack
     {
         Scanner input = new Scanner(System.in);
         String command;
-        String[] menuList = new String[6];
+        String[] menuList = new String[7];
         char[] order;
 
         do
@@ -29,7 +29,8 @@ public class TestLStack
             menuList[2] = "[3] E : Report whether the stack is empty.";
             menuList[3] = "[4] F : Report whether the stack is full.";
             menuList[4] = "[5] C : Clear the stack.";
-            menuList[5] = "[6] Q : Exit the test program.";
+            menuList[5] = "[6] ! : Clone the stack.";
+            menuList[6] = "[7] Q : Exit the test program.";
 
             for (int i = 0; i < menuList.length; ++i)
                 System.out.println(menuList[i]);
@@ -69,6 +70,11 @@ public class TestLStack
                     break;
                 case 'Q':
                 case 'q':
+                    break;
+                case '!':
+                    LStack newStack = (LStack)((LStack)stackElement).clone();
+                    System.out.print("New Stack: ");
+                    newStack.showStructure();
                     break;
                 default:
                     System.out.println("Invalid command, try again.");
